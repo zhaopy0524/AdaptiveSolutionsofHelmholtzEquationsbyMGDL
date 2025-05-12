@@ -18,7 +18,7 @@ activation = ['sin','sin','relu','relu','relu','relu']
 #set train epoch for each grade
 mul_epochs = [400,3000,3000,2500,2500,1000]
 
-stop_criterion = [1e-06,1e-07,1e-07,1e-08,1e-08,1e-08]
+stop_criterion = [1e-09,1e-09,1e-09,1e-09,1e-09,1e-09]
 
 data = generate_data(k)  
 
