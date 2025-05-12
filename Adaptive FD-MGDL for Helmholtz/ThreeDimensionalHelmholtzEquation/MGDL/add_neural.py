@@ -35,7 +35,7 @@ def add_network(fullfilename):
 
             nn_parameter["mul_layers_dims"].append([256, 256, 1])
             opt_parameter["epochs"].append(2000)
-            opt_parameter["Stop_criterion"].append(1e-8)
+            opt_parameter["Stop_criterion"].append(1e-9)
             nn_parameter["activation"].append("relu")
 
             opt_parameter["MAX_learning_rate"].append(MAXLr[i])
