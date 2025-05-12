@@ -21,7 +21,7 @@ activation = ['sin']
 #set train epoch for each grade
 mul_epochs = [500]
 
-stop_criterion = [1e-06]
+stop_criterion = [1e-09]
 
 
 #set max learning rate and min learning rate for each grade
