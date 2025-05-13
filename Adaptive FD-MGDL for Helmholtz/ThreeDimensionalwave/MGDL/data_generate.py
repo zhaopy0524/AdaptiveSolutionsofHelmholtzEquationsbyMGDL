@@ -15,13 +15,13 @@ def generate_data(k):
     def u(x1, x2, x3):
         return np.exp(1j * (k1 * x1 + k2 * x2 + k3 * x3))
     
-    num = 61
+    num = 62
     ntrain = num
     h = 1/(ntrain-1)
     m = ntrain - 2
     mm = m**2
     mmm = m**3
-    ntest = 31
+    ntest = 32
     
     x1 = np.linspace(0, 1, ntrain)[1:-1]
     x2 = np.linspace(0, 1, ntrain)[1:-1]
