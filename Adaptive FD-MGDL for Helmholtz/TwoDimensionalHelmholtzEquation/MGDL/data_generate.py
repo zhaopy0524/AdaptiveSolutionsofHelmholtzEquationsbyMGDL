@@ -13,18 +13,14 @@ def generate_data(k):
         return np.sin(np.sqrt(2)/2*k*x1) * np.sin(np.sqrt(2)/2*k*x2)
 
     k_settings = {
-        50: (303, 152),
-        100: (501, 251),
-        150: (701, 351),
-        200: (701, 351)
+        50: (302, 152),
+        100: (502, 252),
+        150: (702, 352),
+        200: (702, 352)
     }
     
     if k in k_settings:
         ntrain, ntest = k_settings[k]
-        if k == 100:
-            k += 1
-        if k == 200:
-            ntrain = (ntrain - 1) * 2 + 1
 
     h = 1/(ntrain-1)
     
