@@ -49,8 +49,7 @@ def result_analysis(fullfilename):
 
     print('the train time is {}'.format(history["time"]))
 
-    F_norm = np.sum(data['AA'].data ** 2) / data['true_Y'].shape[1]
-    plt.plot(history["REC_FRQ_iter"], np.array(history["train_costs"]) * F_norm, label="Train loss")
+    plt.plot(history["REC_FRQ_iter"], np.array(history["train_costs"]), label="Train loss")
     plt.xlabel('Number of training epochs')
     plt.ylabel('Loss')
     plt.yscale('log')
