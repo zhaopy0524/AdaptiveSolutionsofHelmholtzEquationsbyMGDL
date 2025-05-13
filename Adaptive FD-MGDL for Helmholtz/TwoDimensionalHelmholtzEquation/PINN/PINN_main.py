@@ -13,18 +13,30 @@ class Sine(nn.Module):
     def forward(self, x):
         return torch.sin(x)
 
+# the structure of PINN: [2, 256, 256, 256, 256, 256, 256, 256, 1]
 class PINN(nn.Module):
     def __init__(self):
         super(PINN, self).__init__()
         self.fc1 = nn.Linear(2, 256)
         self.fc2 = nn.Linear(256, 256)
-        self.fc3 = nn.Linear(256, 1)
-        self.activation = Sine()
-        
+        self.fc3 = nn.Linear(256, 256)
+        self.fc4 = nn.Linear(256, 256)  
+        self.fc5 = nn.Linear(256, 256)  
+        self.fc6 = nn.Linear(256, 256) 
+        self.fc7 = nn.Linear(256, 256)
+        self.fc8 = nn.Linear(256, 1)  
+        self.sine = Sine()      
+        self.relu = nn.ReLU()     
+
     def forward(self, x):
-        x = self.activation(self.fc1(x))
-        x = self.activation(self.fc2(x))
-        x = self.fc3(x)
+        x = self.sine(self.fc1(x))
+        x = self.sine(self.fc2(x)) 
+        x = self.sine(self.fc3(x)) 
+        x = self.relu(self.fc4(x)) 
+        x = self.relu(self.fc5(x)) 
+        x = self.relu(self.fc6(x)) 
+        x = self.relu(self.fc7(x))
+        x = self.fc8(x) 
         return x
 
 
@@ -59,14 +71,14 @@ k = 50.0
 
 const = np.sin((np.sqrt(2)/2)*k)
 
-N_grid = 300
+N_grid = 302
 x_interior = np.linspace(0, 1, N_grid)[1:-1]
 y_interior = np.linspace(0, 1, N_grid)[1:-1]
 X_mesh, Y_mesh = np.meshgrid(x_interior, y_interior)
 X_int = np.hstack((X_mesh.reshape(-1, 1), Y_mesh.reshape(-1, 1)))
 X_int = torch.tensor(X_int, dtype=torch.float32)
 
-N_boundary = 300
+N_boundary = 302
 x_boundary = np.linspace(0, 1, N_boundary)
 y_boundary = np.linspace(0, 1, N_boundary)
 
@@ -90,7 +102,7 @@ ub_top = const * torch.sin((np.sqrt(2)/2)*k * xb_top[:, 0:1])
 
 t_max = 1e-2
 t_min = 1e-4
-K_steps = 2500
+K_steps = 15000
 gamma = (1.0 / K_steps) * np.log(t_max / t_min)
 
 net = PINN()
@@ -149,7 +161,7 @@ error_rel_train = np.linalg.norm(u_pred_train - u_exact_train, 2) / np.linalg.no
 print(f"Relative L2 error on training data: {error_rel_train:.3e}")
 
 
-N_test = 100
+N_test = 152
 x_test = np.linspace(0, 1, N_test)
 y_test = np.linspace(0, 1, N_test)
 X_test, Y_test = np.meshgrid(x_test, y_test)
