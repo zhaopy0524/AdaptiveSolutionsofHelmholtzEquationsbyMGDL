@@ -11,16 +11,14 @@ def generate_data(k):
     k2 = k * np.sin(theta)
 
     k_settings = {
-        50: (301, 151),
-        100: (501, 251),
-        150: (701, 351),
-        200: (701, 351)
+        50: (302, 152),
+        100: (502, 252),
+        150: (702, 352),
+        200: (702, 352)
     }
 
     if k in k_settings:
         ntrain, ntest = k_settings[k]
-        if k in {100, 200}:
-            k += 1
 
     h = 1 / (ntrain - 1)
 
