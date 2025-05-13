@@ -82,8 +82,7 @@ def result_analysis(fullfilename):
     print('the total train times is {}'.format(total_time))
 
     # plt.figure(figsize=(10, 6)) # figure's size setting
-    F_norm = np.sum(data['AA'].data ** 2) / data['true_Y'].shape[1]
-    plt.plot(np.array(TRAIN_loss) * F_norm, label='Train loss')
+    plt.plot(np.array(TRAIN_loss), label='Train loss')
     plt.legend(loc='upper right')
     plt.xlabel("Number of training epochs")
     plt.ylabel("Loss")
