@@ -11,13 +11,9 @@ def generate_data(k):
     def u(x1, x2, x3):
         return np.sin(np.sqrt(3) / 3 * k * x1) * np.sin(np.sqrt(3) / 3 * k * x2) * np.sin(np.sqrt(3) / 3 * k * x3)
 
-    num = 61
+    num = 62
     ntrain = num
-    ntest = 31
-    if k == 40:
-        num = 59
-        ntrain = num
-        ntest = 30
+    ntest = 32
     h = 1 / (ntrain - 1)
     m = ntrain - 2
     mm = m ** 2
